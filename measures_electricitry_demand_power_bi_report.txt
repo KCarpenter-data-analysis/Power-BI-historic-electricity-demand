@@ -1,0 +1,97 @@
+#Measures in Historic Electricity Demand Power BI Report
+
+#
+Average MWh per Day = DIVIDE(Measures_Table[Total National Demand], DISTINCTCOUNT(dim_date[Date]))
+
+
+
+#
+Find Max Time = LOOKUPVALUE (
+    'dim_time'[Start Time],
+    'dim_time'[Settlement Period], [Max Settlement Period]) 
+
+
+
+#
+Max Settlement Date = 
+CALCULATE (
+    FIRSTNONBLANK ( dim_date[Date].[Date], 1 ),
+    FILTER (
+        fact_electricity_demand,
+        fact_electricity_demand[National Demand]
+            = MAX ( fact_electricity_demand[National Demand] )
+    )
+
+
+#
+Max Settlement Period = 
+CALCULATE (
+    FIRSTNONBLANK ( fact_electricity_demand[Settlement Period], 1 ),
+    FILTER (
+        fact_electricity_demand,
+        fact_electricity_demand[National Demand]
+            = MAX ( fact_electricity_demand[National Demand] )
+    )
+)
+
+
+
+#
+MaxTime = 
+VAR max_period =
+    CALCULATE (
+    FIRSTNONBLANK ( fact_electricity_demand[Settlement Period], 1 ),
+    FILTER (
+        fact_electricity_demand,
+        fact_electricity_demand[National Demand]
+            = MAX ( fact_electricity_demand[National Demand] )
+    )
+)
+RETURN
+    LOOKUPVALUE (
+    dim_time[Start Time],
+    dim_time[Settlement Period], max_period
+)
+
+
+# 
+Min Settlement Date = 
+CALCULATE (
+    FIRSTNONBLANK ( dim_date[Date].[Date], 1 ),
+    FILTER (
+        fact_electricity_demand,
+        fact_electricity_demand[National Demand]
+            = MIN( ( fact_electricity_demand[National Demand] )
+    )
+))
+
+
+#
+Min Settlement Period = 
+CALCULATE (
+    FIRSTNONBLANK ( fact_electricity_demand[Settlement Period], 1 ),
+    FILTER (
+        fact_electricity_demand,
+        fact_electricity_demand[National Demand]
+            = MIN(  fact_electricity_demand[National Demand] )))
+
+#
+Min Time = LOOKUPVALUE(dim_time[Start Time], dim_time[Settlement Period], [Min Settlement Period])
+
+#
+Mode Wind Direction = MINX (
+    TOPN(
+        1,
+        ADDCOLUMNS (
+            VALUES ('fact_hourly_weather_obs'[Wind Direction] ),
+            "frequency", CALCULATE ( COUNT ( 'fact_hourly_weather_obs'[Wind Direction] ))
+        ),
+        [frequency],
+        0
+    ),
+    'fact_hourly_weather_obs'[Wind Direction]
+) 
+
+
+#
+Total National Demand = SUM(fact_electricity_demand[MWh per Settlement Period]) 
