@@ -66,5 +66,5 @@ Once the data sets were in Power BI I created various measures. Text scripts of 
 Met Office (2019): Met Office MIDAS Open: UK Land Surface Stations Data (1853-current). Centre for Environmental Data Analysis, 15/07/2024. http://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1
 	
 
-Weber, C., Möst, D., Fichtner, W., (2022) Economics of Power Systems. Cham: Springer Nature.
+Weber, C., Möst, D., Fichtner, W., (2022) _Economics of Power Systems_. Cham: Springer Nature.
 
