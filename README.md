@@ -47,9 +47,11 @@ The historic electricity demand data came from the National Grid ESO Data Portal
 The data is available under the National Grid ESO Open Data Licence v1.0. This allows users to copy, publish, distribute, adapt and exploit the data commercially and non-commercially provided the source is acknowledged. So, this project is supported by National Grid ESO Open Data.
 
 -	Weather data 
-Weather data was sourced from the Met Office’s Midas-open dataset, a subset of the Met Office Integrated Data Archive System (MIDAS) Land and Marine Surface Stations Data. Midas-open contains land surface observations from 1832-present. At the time of obtaining this data the most recent data available was from 2022 so I used hourly weather observations from 2018 to 2022. It is available at: https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1. 
+Weather data was sourced from the Met Office’s Midas-open dataset, a subset of the Met Office Integrated Data Archive System (MIDAS) Land and Marine Surface Stations Data. Midas-open contains land surface observations from 1832-present. At the time of obtaining this data the most recent data available was from 2022 so I used hourly weather observations from 2018 to 2022. It is available at: https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1. The data is available under the Open Government licence. This allows users to copy, publish, distribute, adapt and exploit the data commercially and non-commercially.
+
 I chose data from one location as a rough approximation for the weather data for Great Britain, rather than produce any averages as these might not make sense for things like wind direction. Obviously, there are limitations in choosing one location including that the temperature, wind speed etc. might vary significantly across Great Britain at any one time. However, I chose a weather station in Nottingham at Sutton-Bonington as it relatively central in England, which is the most populous country in Great Britain so likely to have the greatest impact on demand for electricity. The weather station at this location is at a height of 43m near to the average height for England (54m) and it is located rurally so will not suffer from the urban heat island effect. I may yet add data from a Scottish location to offer an approximation for Scottish weather as this can sometimes vary significantly from the weather in central England. 
-The data is available under the Open Government licence. This allows users to copy, publish, distribute, adapt and exploit the data commercially and non-commercially.
+
+Some of the weather data from Sutton-Bonington was missing, including reasonaly significant amounts of the data on wind direction and wind speed in  2021 and 2022. To deal with this I considered adding in data from the nearby weather station of Watnall (also in Nottinghamshire but at a higher elevation) to replace the missing values as this would have been reasonably similar. However, I ultimately decided against this as it would have been tricky to do this while also preserving the origin of the Watnall data.  
 
 -	Bank Holiday Data
 This data came from a UK government website https://www.gov.uk/bank-holidays. The data is available under the Open Government licence. This allows users to copy, publish, distribute, adapt and exploit the data commercially and non-commercially.
@@ -61,6 +63,7 @@ The weather data needed quite a lot of cleaning and had data missing so with thi
 I might use the weather data for other projects, so I wanted to store the data in a relational database. I created a database and tables in PostgreSQL then imported data from csv files into tables. An ODBC (Open Database Connectivity) interface was used to import the data from import data from PostgreSQL into Power BI. 
 The bank holiday data I pulled directly into Power Query using the web connector. 
 Once the data sets were in Power BI I created various measures. Text scripts of these can be found in the repository for this project.
+
 
 **REFERENCES:**
 
