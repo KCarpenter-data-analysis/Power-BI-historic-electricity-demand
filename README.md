@@ -4,7 +4,7 @@
 
 **Aims:**
 
-The project analyses and visualises data on historic electricity demand in Great Britain from 2018-2024. The impetus for the project was that I wanted to use Power BI to compare daily load curves for Great Britain for different days on the same graph, as I could not find anything like this available. I wanted to be able to compare different days visually to see how they varied according to factors like day of the week, time of the year, bank holidays and weather data.
+The project analyses and visualises data on historic electricity demand in Great Britain from 2018-2024. The impetus for the project was that I wanted to use Power BI to compare daily load curves for Great Britain for different days on the same visualisation, as I could not find anything like this available. I wanted to be able to compare different days visually to see how they varied according to factors like day of the week, time of the year, bank holidays and weather data.
 
 **Objectives:** 
 -	Use data from multiple sources to gain insights into demand for electricity in Great Britain.
